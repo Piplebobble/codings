@@ -1,0 +1,20 @@
+## 不同子串
+* 一个字符串的非空子串是指字符串中长度至少为 1 的连续的一段字符组成 的串。例如，字符串aaab 有非空子串a, b, aa, ab, aaa, aab, aaab，一共 7 个。 注意在计算时，只算本质不同的串的个数。
+   请问，字符串0100110001010001 有多少个不同的非空子串？
+```python
+var='0100110001010001'     #字符串
+test=[]                    #列表
+num=1                      #串本省就是
+step=1
+while step<len(var):
+    test.append(var[0:step])         #每个长度串的第一个
+    for i in range(len(var)-step):   #以step为长度每次向后推进，每一轮的长度都是一样的
+        if var[i+1:i+step+1] in test:
+            continue
+        else:
+            test.append(var[i+1:i+step+1])
+    step+=1
+    num+=len(test)
+    test=[]
+print(num)
+```
